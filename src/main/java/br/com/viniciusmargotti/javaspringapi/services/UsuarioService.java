@@ -5,7 +5,6 @@ import br.com.viniciusmargotti.javaspringapi.dtos.UsuarioDTO;
 import br.com.viniciusmargotti.javaspringapi.exceptions.ProcessException;
 import br.com.viniciusmargotti.javaspringapi.models.Pessoa;
 import br.com.viniciusmargotti.javaspringapi.models.Usuario;
-import br.com.viniciusmargotti.javaspringapi.repository.BairroRepository;
 import br.com.viniciusmargotti.javaspringapi.repository.PessoaRepository;
 import br.com.viniciusmargotti.javaspringapi.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,6 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private BairroRepository bairroRepository;
 
     @Autowired
     private PessoaRepository pessoaRepository;
