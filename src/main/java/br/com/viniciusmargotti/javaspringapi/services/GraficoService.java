@@ -16,10 +16,11 @@ public class GraficoService {
 
         Grafico grafico = new Grafico.Builder()
                 .campos(graficoDTO.getCampos())
-                .cor(graficoDTO.getCor())
                 .borda(graficoDTO.getBorda())
+                .cor(graficoDTO.getCor())
                 .idUsuario(graficoDTO.getIdUsuario())
                 .titulo(graficoDTO.getTitulo())
+                .tipoGrafico(graficoDTO.getTipoGrafico())
                 .valores(graficoDTO.getCampos()).build();
 
         return graficoRepository.save(grafico);

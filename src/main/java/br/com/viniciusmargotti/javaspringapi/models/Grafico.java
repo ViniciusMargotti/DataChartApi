@@ -27,7 +27,6 @@ public class Grafico implements Serializable {
     @Column(name = "VALORES")
     private String valores;
 
-    @NotNull(message = "O campo cor é obrigatório")
     @Column(name = "COR")
     private String cor;
 
@@ -43,6 +42,11 @@ public class Grafico implements Serializable {
     @Column(name = "ID_USUARIO")
     private Integer idUsuario;
 
+    @NotNull(message = "O campo tipo é obrigatório")
+    @Column(name = "TIPO")
+    private Integer tipoGrafico;
+
+
     public Grafico() {
     }
 
@@ -55,6 +59,7 @@ public class Grafico implements Serializable {
         private String cor;
         private Integer borda;
         private Integer idUsuario;
+        private Integer tipoGrafico;
 
         public Builder id(Long id) {
             this.id = id;
@@ -91,6 +96,11 @@ public class Grafico implements Serializable {
             return this;
         }
 
+        public Builder tipoGrafico(Integer tipoGrafico) {
+            this.tipoGrafico = tipoGrafico;
+            return this;
+        }
+
         public Grafico build() {
             Grafico grafico = new Grafico();
             grafico.id = this.id;
@@ -100,6 +110,7 @@ public class Grafico implements Serializable {
             grafico.cor = this.cor;
             grafico.borda = this.borda;
             grafico.titulo = this.titulo;
+            grafico.tipoGrafico = this.tipoGrafico;
             return grafico;
         }
     }

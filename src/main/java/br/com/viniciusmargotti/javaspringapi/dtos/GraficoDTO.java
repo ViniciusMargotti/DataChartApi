@@ -25,7 +25,6 @@ public class GraficoDTO implements Serializable {
     @NotBlank(message = "O campo valores é obrigatório")
     private String valores;
 
-    @NotBlank(message = "O campo cor é obrigatório")
     private String cor;
 
     @NotBlank(message = "O campo titulo é obrigatório")
@@ -36,6 +35,9 @@ public class GraficoDTO implements Serializable {
 
     @NotNull(message = "O campo idUsuario é obrigatório")
     private Integer idUsuario;
+
+    @NotNull(message = "O campo tipo gráfico é obrigatório")
+    private Integer tipoGrafico;
 
 
     public GraficoDTO() {
@@ -57,6 +59,7 @@ public class GraficoDTO implements Serializable {
         private String cor;
         private Integer borda;
         private Integer idUsuario;
+        private Integer tipoGrafico;
 
         public Builder id(Long id) {
             this.id = id;
@@ -93,33 +96,41 @@ public class GraficoDTO implements Serializable {
             return this;
         }
 
+        public Builder tipoGrafico(Integer tipoGrafico) {
+            this.tipoGrafico = tipoGrafico;
+            return this;
+        }
+
         public GraficoDTO build() {
             GraficoDTO grafico = new GraficoDTO();
-           grafico.id = this.id;
-           grafico.borda = this.borda;
-           grafico.campos = this.campos;
-           grafico.cor = this.cor;
-           grafico.titulo = this.titulo;
-           grafico.valores = this.valores;
-           grafico.idUsuario = this.idUsuario;
-           grafico.titulo = this.titulo;
-           return grafico;
+            grafico.id = this.id;
+            grafico.borda = this.borda;
+            grafico.campos = this.campos;
+            grafico.cor = this.cor;
+            grafico.titulo = this.titulo;
+            grafico.valores = this.valores;
+            grafico.idUsuario = this.idUsuario;
+            grafico.titulo = this.titulo;
+            grafico.tipoGrafico = this.tipoGrafico;
+            return grafico;
         }
 
         public GraficoDTO toRepresentation(Grafico entity) {
 
             GraficoDTO grafico = new Builder()
                     .id(entity.getId())
-                    .borda(borda)
-                    .campos(campos)
-                    .valores(valores)
-                    .cor(cor)
-                    .idUsuario(idUsuario).build();
+                    .borda(entity.getBorda())
+                    .campos(entity.getCampos())
+                    .valores(entity.getValores())
+                    .cor(entity.getCor())
+                    .titulo(entity.getTitulo())
+                    .tipoGrafico(entity.getTipoGrafico())
+                    .idUsuario(entity.getIdUsuario()).build();
 
             return grafico;
         }
 
-        public List<GraficoDTO> toListRepresentation(List<Grafico> graficos){
+        public List<GraficoDTO> toListRepresentation(List<Grafico> graficos) {
             return graficos.stream().map(this::toRepresentation).collect(Collectors.toList());
         }
     }
