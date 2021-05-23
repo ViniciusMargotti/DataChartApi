@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class GraficosResource {
 
     @ApiOperation(value = "Salva um novo gráfico")
     @PostMapping("save")
-    public ResponseEntity<GraficoDTO> save(@RequestBody GraficoDTO graficoDTO) {
+    public ResponseEntity<GraficoDTO> save(@RequestBody @Valid GraficoDTO graficoDTO) {
         return new ResponseEntity<>(grb.toRepresentation(graficoService.saveGrafico(graficoDTO)), HttpStatus.OK);
     }
 

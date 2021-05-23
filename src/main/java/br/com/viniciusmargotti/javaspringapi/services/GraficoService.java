@@ -15,13 +15,14 @@ public class GraficoService {
     public Grafico saveGrafico(GraficoDTO graficoDTO) {
 
         Grafico grafico = new Grafico.Builder()
+                .id(graficoDTO.getId())
                 .campos(graficoDTO.getCampos())
                 .borda(graficoDTO.getBorda())
                 .cor(graficoDTO.getCor())
                 .idUsuario(graficoDTO.getIdUsuario())
                 .titulo(graficoDTO.getTitulo())
                 .tipoGrafico(graficoDTO.getTipoGrafico())
-                .valores(graficoDTO.getCampos()).build();
+                .valores(graficoDTO.getValores()).build();
 
         return graficoRepository.save(grafico);
     }
