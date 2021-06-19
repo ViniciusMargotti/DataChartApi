@@ -28,6 +28,12 @@ public class GraficosResource {
     @Autowired
     private GraficoDTO.Builder grb;
 
+    @ApiOperation(value = "Delete um gráfico")
+    @PostMapping("delete")
+    public ResponseEntity<GraficoDTO> delete(@RequestBody @Valid GraficoDTO graficoDTO) {
+        return new ResponseEntity<>(grb.toRepresentation(graficoService.deleteGrafico(graficoDTO)), HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Salva um novo gráfico")
     @PostMapping("save")
     public ResponseEntity<GraficoDTO> save(@RequestBody @Valid GraficoDTO graficoDTO) {
