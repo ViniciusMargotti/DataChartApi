@@ -27,5 +27,17 @@ public class GraficoService {
         return graficoRepository.save(grafico);
     }
 
-
+     public Grafico deleteGrafico(GraficoDTO graficoDTO) {
+        Grafico grafico = new Grafico.Builder()
+                .id(graficoDTO.getId())
+                .campos(graficoDTO.getCampos())
+                .borda(graficoDTO.getBorda())
+                .cor(graficoDTO.getCor())
+                .idUsuario(graficoDTO.getIdUsuario())
+                .titulo(graficoDTO.getTitulo())
+                .tipoGrafico(graficoDTO.getTipoGrafico())
+                .valores(graficoDTO.getValores()).build();
+        graficoRepository.delete(grafico);
+        return grafico;
+    }
 }
