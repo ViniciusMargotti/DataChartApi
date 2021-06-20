@@ -1,6 +1,7 @@
 package br.com.viniciusmargotti.javaspringapi.resources;
 
 import br.com.viniciusmargotti.javaspringapi.dtos.GraficoDTO;
+import br.com.viniciusmargotti.javaspringapi.models.Grafico;
 import br.com.viniciusmargotti.javaspringapi.repository.GraficoRepository;
 import br.com.viniciusmargotti.javaspringapi.services.GraficoService;
 import io.swagger.annotations.Api;
@@ -38,6 +39,14 @@ public class GraficosResource {
     @PostMapping("save")
     public ResponseEntity<GraficoDTO> save(@RequestBody @Valid GraficoDTO graficoDTO) {
         return new ResponseEntity<>(grb.toRepresentation(graficoService.saveGrafico(graficoDTO)), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Deleta um gráfico")
+    @PostMapping("delete/{id}")
+    public ResponseEntity<GraficoDTO> save(@PathVariable long idGrafico) {
+        Grafico grafico = graficoRepository.findById(idGrafico).get();
+        graficoRepository.delete(grafico);
+        return  ResponseEntity.noContent().build();
     }
 
     @ApiOperation(value = "Busca todos os gráficos")
